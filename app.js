@@ -1,7 +1,11 @@
+const express = require("express");
+const app = express();
+
+const port = process.env.PORT || 8080;
+
 const fetch = require("node-fetch");
 const FormData = require("form-data");
 
-const endpoint = "https://jsonplaceholder.typicode.com/todos";
 const mobi = "https://dev-mobi-cordova.bepatientsolutions.com/rest/v2";
 
 const getTodos = async url => await fetch(url);
@@ -34,3 +38,11 @@ login(mobi)
   .then(res => res.json())
   .then(json => console.log(json))
   .catch(err => console.log(err));
+
+app.get("/graphql", (req, res) => {
+  res.send("graphql");
+});
+
+app.listen(port, () => {
+  console.log(`listening to port ${port}`);
+});
